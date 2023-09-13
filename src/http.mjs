@@ -14,6 +14,7 @@ import privacy from "./views/privacy.mjs";
 import guidelines from "./views/guidelines.mjs";
 import onboarding from "./views/onboarding.mjs";
 import join from "./views/join.mjs";
+import match from "./views/match.mjs"
 import nft from "./views/nft.mjs";
 import nfts from "./views/nfts.mjs";
 import subscribe from "./views/subscribe.mjs";
@@ -86,6 +87,10 @@ export async function launch(trie, libp2p) {
   });
   app.get("/community", async (request, reply) => {
     const content = await community(trie, reply.locals.theme);
+    return reply.status(200).type("text/html").send(content);
+  });
+  app.get("/match", async (request, reply) => {
+    const content = await match(trie, reply.locals.theme);
     return reply.status(200).type("text/html").send(content);
   });
   app.get("/stats", async (request, reply) => {
