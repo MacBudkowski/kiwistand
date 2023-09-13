@@ -72,6 +72,7 @@ const calculateScore = (votes, itemHourAge, gravity = 1.8) => {
 
 async function topstories(leaves, start, end) {
   return count(leaves)
+    .filter((story) => story.upvotes > 2)
     .map((story) => {
       const score = calculateScore(story.upvotes, itemAge(story.timestamp));
       story.score = score;
@@ -265,7 +266,17 @@ export default async function index(trie, theme, page) {
                                   story.upvoters,
                                 )}"
                                 data-editorpicks="true"
-                              ></div>
+                              >
+                                <div>
+                                  <div
+                                    class="votearrow pulsate"
+                                    style="color: rgb(130, 130, 130); cursor: pointer;"
+                                    title="upvote"
+                                  >
+                                    ▲
+                                  </div>
+                                </div>
+                              </div>
                             </a>
                           </div>
                           <div

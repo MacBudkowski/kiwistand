@@ -14,6 +14,10 @@ import privacy from "./views/privacy.mjs";
 import guidelines from "./views/guidelines.mjs";
 import onboarding from "./views/onboarding.mjs";
 import join from "./views/join.mjs";
+import nfts from "./views/nfts.mjs";
+import guidelines from "./views/guidelines.mjs";
+import onboarding from "./views/onboarding.mjs";
+import join from "./views/join.mjs";
 import match from "./views/match.mjs"
 import nft from "./views/nft.mjs";
 import nfts from "./views/nfts.mjs";
@@ -71,6 +75,10 @@ export async function launch(trie, libp2p) {
   });
   app.get("/new", async (request, reply) => {
     const content = await newest(trie, reply.locals.theme);
+    return reply.status(200).type("text/html").send(content);
+  });
+  app.get("/nfts", async (request, reply) => {
+    const content = await nfts(trie, reply.locals.theme);
     return reply.status(200).type("text/html").send(content);
   });
   app.get("/nfts", async (request, reply) => {
@@ -145,11 +153,8 @@ export async function launch(trie, libp2p) {
       .type("text/html")
       .send(onboarding(reply.locals.theme));
   });
-  app.get("/join", async (request, reply) => {
-    return reply.status(200).type("text/html").send(join(reply.locals.theme));
-  });
   app.get("/welcome", async (request, reply) => {
-    return reply.status(200).type("text/html").send(nft(reply.locals.theme));
+    return reply.status(200).type("text/html").send(join(reply.locals.theme));
   });
   app.get("/upvotes", async (request, reply) => {
     const content = await upvotes(
