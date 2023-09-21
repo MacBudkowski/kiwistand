@@ -14,12 +14,7 @@ import privacy from "./views/privacy.mjs";
 import guidelines from "./views/guidelines.mjs";
 import onboarding from "./views/onboarding.mjs";
 import join from "./views/join.mjs";
-import nfts from "./views/nfts.mjs";
-import guidelines from "./views/guidelines.mjs";
-import onboarding from "./views/onboarding.mjs";
-import join from "./views/join.mjs";
 import match from "./views/match.mjs"
-import nft from "./views/nft.mjs";
 import nfts from "./views/nfts.mjs";
 import subscribe from "./views/subscribe.mjs";
 import upvotes from "./views/upvotes.mjs";
