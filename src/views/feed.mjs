@@ -26,7 +26,7 @@ import * as karma from "../karma.mjs";
 
 const html = htm.bind(vhtml);
 
-function CanonRow(sheets) {
+export function CanonRow(sheets) {
   return html`
     <tr>
       <td>
