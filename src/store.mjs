@@ -409,11 +409,11 @@ export async function post(trie, index, parser, allowlist, delegations) {
   }
 
   let upvoters = [];
+  let comments = [];
   if (parser) {
     const from = null;
     const amount = null;
     const startDatetime = null;
-    const type = "amplify";
     const upvotes = await posts(
       trie,
       from,
@@ -423,12 +423,24 @@ export async function post(trie, index, parser, allowlist, delegations) {
       allowlist,
       delegations,
       message.href,
-      type,
+      "amplify",
     );
     upvoters = upvotes.map(({ identity, timestamp }) => ({
       identity,
       timestamp,
     }));
+
+    comments = await posts(
+      trie,
+      from,
+      amount,
+      parser,
+      startDatetime,
+      allowlist,
+      delegations,
+      `kiwi:0x${index.toString("hex")}`,
+      "comment",
+    );
   }
 
   return {
@@ -439,6 +451,7 @@ export async function post(trie, index, parser, allowlist, delegations) {
       ...message,
       upvoters,
       upvotes: upvoters.length,
+      comments,
     },
   };
 }
