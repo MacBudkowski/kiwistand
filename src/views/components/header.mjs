@@ -25,7 +25,7 @@ const header = async (theme, path) => {
     </style>`;
   };
 
-  if (path === "/kiwipass-mint") {
+  if (["/kiwipass-mint", "/indexing"].includes(path)) {
     return html` ${renderStyles()}
       <td style="height: 62px;">
         <table
